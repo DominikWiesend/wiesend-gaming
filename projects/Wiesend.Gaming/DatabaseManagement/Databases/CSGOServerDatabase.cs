@@ -47,6 +47,7 @@
 #endregion of MIT License [Dominik Wiesend] 
 #endregion of Licenses [MIT Licenses]
 
+using System;
 using System.Data.Entity;
 using Wiesend.Gaming.CounterStrike;
 
@@ -56,6 +57,7 @@ namespace Wiesend.Gaming.DatabaseManagement.Databases
     /// Database (Context) of the CounterStrike 
     /// competitive matche making.
     /// </summary>
+    [CLSCompliant(false)]
     public partial class CSGOServerDatabase : DbContext
     {
         /// <summary>
@@ -64,7 +66,7 @@ namespace Wiesend.Gaming.DatabaseManagement.Databases
         public CSGOServerDatabase() : base("name=CSGOServerDBConnection")
         {
             //Database.SetInitializer(new DropCreateDatabaseAlways<CSGOServerDatabase>());
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<CSGOServerDatabase, Wiesend.Gaming.Migrations.Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<CSGOServerDatabase, Wiesend.Gaming.Migrations.Configuration>());
         }
 
         /// <summary>

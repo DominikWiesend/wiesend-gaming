@@ -1,70 +1,79 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <!-- Target Fameworks [.NET Standard 2.0], [.NET Framework 4.0], [.NET Framework 4.5] -->
+  <!-- Target Fameworks [.NET Framework 4.5] -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net40;net45</TargetFrameworks>
+    <TargetFrameworks>net45</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- Product specific values -->
+  <PropertyGroup>
     <AssemblyName>Wiesend.Gaming</AssemblyName>
     <RootNamespace>Wiesend.Gaming</RootNamespace>
-    <AssemblyVersion>0.0.4.0</AssemblyVersion>
-    <FileVersion>0.0.4.0</FileVersion>
-    <Product>Wiesend Gaming - Library</Product>
-    <Description>Library for interacting with the 'GET5' server plugin, to easily maintain competitive matches.</Description>
+    <AssemblyOriginatorKeyFile>[InternalKeys]\Wiesend.Gaming.snk</AssemblyOriginatorKeyFile>
+    <Product>Wiesend's [Dynamic Link Library] - Wiesend.Gaming</Product>
     <PackageTags>CSGOServer, CSGO, MatchMaking, competitive matches, GET5</PackageTags>
+  </PropertyGroup>
+
+  <!-- Product non-specific values -->
+  <PropertyGroup>
+    <Description>Library for interacting with the 'GET5' server plugin, to easily maintain competitive matches.</Description>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/DominikWiesend/wiesend-gaming/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://dominikwiesend.github.io/wiesend-gaming/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DominikWiesend/wiesend-gaming</RepositoryUrl>
+    <RepositoryType>GitHub Repository</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes />
     <Company>Dominik Wiesend Cooperation</Company>
     <Authors>Dominik Wiesend, Korbinian Wiesend</Authors>
     <Copyright>Copyright(c) 2018 Dominik Wiesend. All rights reserved.</Copyright>
-    <Version>0.0.4</Version>
-    <NeutralLanguage>en-US</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>[InternalKeys]\Wiesend.Gaming.snk</AssemblyOriginatorKeyFile>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-  </PropertyGroup>
-  
-  <!-- Constants (define) for [.NET Standard 2.0] -->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD20</DefineConstants>
+    <Version>0.0.4.0</Version>
+    <FileVersion>0.0.4.0</FileVersion>
+    <AssemblyVersion>0.0.4.0</AssemblyVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DocumentationFile />
   </PropertyGroup>
 
-  <!-- Constants (define) for [.NET Framework 4.0] -->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40'">
-    <DefineConstants>NET40;NETFULL</DefineConstants>
+  <!-- Configuration (PropertyGroup) for [.NET Framework 4.5] -->
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>1701;1702;1705</NoWarn>
+  </PropertyGroup>
+
+  <!-- Constants (define) for the [Debug]-Configuration -->
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>TRACE;DEBUG;</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Property group for the  [Release]-Configuration -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>false</IncludeSymbols>
+    <DefineConstants>RELEASE</DefineConstants>
   </PropertyGroup>
 
   <!-- Constants (define) for [.NET Framework 4.5] -->
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net45'">
     <DefineConstants>NET45;NETFULL</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\Wiesend.Gaming.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\Wiesend.Gaming.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <!-- Nuget packages for all framework(s) -->
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-  </ItemGroup>
-
-  <!-- Nuget packages for [.NET Standard 2.0] -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>2.0.2</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <!-- Nuget packages for [.NET Framework 4.0] -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
-  </ItemGroup>
 
   <!-- Nuget packages for [.NET Framework 4.5] -->
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-    <PackageReference Include="Wiesend" Version="4.1.7" />
-    <PackageReference Include="Wiesend.Utilities" Version="1.4.2" />
+    <PackageReference Include="Wiesend.DataTypes" Version="5.0.0" />
     <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   
 </Project>

@@ -191,7 +191,7 @@ namespace Wiesend.Gaming.CounterStrike
         /// </summary>
         [NotMapped]
         [JsonProperty("cvars", Required = Required.Always, Order = 12)]
-        Dictionary<string, string> points
+        Dictionary<string, string> Cvars
         {
             get
             {
