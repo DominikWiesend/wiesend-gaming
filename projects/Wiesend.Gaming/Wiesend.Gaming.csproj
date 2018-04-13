@@ -62,7 +62,10 @@
 
   <!-- Nuget packages for [.NET Framework 4.5] -->
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="Wiesend.IO" Version="5.0.0" />
     <PackageReference Include="Wiesend.DataTypes" Version="5.0.0" />
+    <PackageReference Include="Wiesend.Validation" Version="5.0.0" />
+    <PackageReference Include="Wiesend.Logging.NLog" Version="5.0.0" />
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <Reference Include="System" />

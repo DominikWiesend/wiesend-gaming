@@ -52,8 +52,19 @@ using Newtonsoft.Json;
 
 namespace Wiesend.Gaming.CounterStrike.Enums.JsonConverter
 {
+    /// <summary>
+    /// Json serialization for 
+    /// the [SideType]-Enum.
+    /// </summary>
     public class SideTypesConverter : Newtonsoft.Json.JsonConverter
     {
+        /// <summary>
+        /// Json writer to serialize the 
+        /// enum to file or stream.
+        /// </summary>
+        /// <param name="writer">Json writer</param>
+        /// <param name="value">The value</param>
+        /// <param name="serializer">The serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             SideTypes sideType = (SideTypes)value;
@@ -71,12 +82,27 @@ namespace Wiesend.Gaming.CounterStrike.Enums.JsonConverter
             }
         }
 
+        /// <summary>
+        /// Json reader to deserialize the 
+        /// enum from file or stream.
+        /// </summary>
+        /// <param name="reader">Json reader</param>
+        /// <param name="objectType">The object type</param>
+        /// <param name="existingValue">The value of the object</param>
+        /// <param name="serializer">The serializer</param>
+        /// <returns></returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = (string)reader.Value;
             return Enum.Parse(typeof(SideTypes), enumString, true);
         }
 
+        /// <summary>
+        /// Bool which shows if the object 
+        /// can be converted.
+        /// </summary>
+        /// <param name="objectType">The type of the object to serialize</param>
+        /// <returns>If it is convertable</returns>
         public override bool CanConvert(Type objectType)
         {
             return objectType == typeof(string);
